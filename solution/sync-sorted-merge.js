@@ -23,7 +23,7 @@ module.exports = (logSources, printer) => {
 
     const nextLog = source.pop();
     if (nextLog) {
-      printQueue = insertInQueue(printQueue, nextLog, source);
+      printQueue = insertInQueue(printQueue, { log: nextLog, source });
     }
   }
 

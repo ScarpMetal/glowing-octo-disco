@@ -46,19 +46,19 @@ function sortQueueItems(arr) {
 /**
  * Insert another log into the print queue using a mergesort approach
  */
-function insertInQueue(arr, log, source) {
-  if (arr.length <= 0) return [{ log, source }];
-  if (arr.length == 1) return mergeQueueItems([{ log, source }], arr);
+function insertInQueue(arr, queueItem) {
+  if (arr.length <= 0) return [queueItem];
+  if (arr.length == 1) return mergeQueueItems([queueItem], arr);
 
   const pivotIndex = Math.floor(arr.length / 2);
   const pivotItem = arr[pivotIndex];
   let left = arr.slice(0, pivotIndex);
   let right = arr.slice(pivotIndex, arr.length);
 
-  if (log.date > pivotItem.date) {
-    left = insertInQueue(left, log, source);
+  if (queueItem.log.date > pivotItem.log.date) {
+    left = insertInQueue(left, queueItem);
   } else {
-    right = insertInQueue(right, log, source);
+    right = insertInQueue(right, queueItem);
   }
 
   return mergeQueueItems(left, right);
